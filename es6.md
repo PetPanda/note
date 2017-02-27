@@ -115,9 +115,51 @@ function* bar() {
 }
 ````
 
-6.  async函数
+#### async函数
+
 1. 概念：async函数就是将 Generator函数的星号（*）替换成async，将yield替换成await;可以按照普通函数执行的模式进行执行；返回值是Promise对象。
-2. 基本用法：
+
+2. 基本用法：async返回值是Promise对象，可以使用then方法添加回调函数。当函数执行时，一旦遇到await就会先返回，等待异步操作完成。
+
+3. 语法：
+    * 返回Promise对象，async函数内部returny语句返回的值，会成为then方法的回调函数的**参数**。
+    ````javascript
+    async function f(){
+        return 'hello world';
+    }
+    f().then(v => console.llog(v));
+    ```` 
+    * await命令后面是一个Promise对象，如果不是，则会被转成一个立即reslove的Promise对象。
+
+4. 注意点：
+
+* await后面的Promise对象，运行结果可能是rejected,所以最好把await命令放在try...catch代码块中。
+* 多个await后面的异步操作，如果不存在继发关系，最好是让他们同时触发。
+* await只能用在async函数中，否则会报错。
+
+#### Promise
+````javascript
+//第一种写法
+doSomething().then(function(){
+     return doSomethingElse();
+}).then(finalHandler)
+//finalHandler回调函数的参数是doSomethingElse函数的运行结果
+
+//第二种写法
+doSomething().then(function(){
+     doSomethingElse();
+     return;
+}).then(finalHandler);
+//finalHandler回调函数的参数是undefined
+
+//第三种写法
+doSomething().then(doSomethingElse()).then(finalHandler);
+//finalHandler回调函数的参数是doSomethingElse函数返回的回调函数的运行结果；；；；；；返回函数，而不是运行结果！！！！！
+
+//第四种写法
+doSomething().then(doSomethingElse).then(finalHandler);
+//写法四和写法一只有一个差别，那就是doSometingElse会收到doSomething()返回的结果。
+````
 
 
 
