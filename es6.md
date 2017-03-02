@@ -166,3 +166,9 @@ doSomething().then(doSomethingElse).then(finalHandler);
 #### Attention
 
 1. 合并对象：Object.assign(target,source); 为对象添加或者修改属性：Object.defineProperty(target,key,value);
+
+2. 异步编程：（将耗时的操作推迟执行）
+    * 回调函数实现异步（在函数中使用setTimeout进行事件的处理）
+    * 监听事件
+    * 发布/订阅 subscriber/publish
+    * Promise对象：每一个异步任务返回一个Promise对象，该对象有一个then方法，允许调用回调函数。

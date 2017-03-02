@@ -103,3 +103,57 @@ var bytes = new Buffer(34);
 1. 基本用法：
     * 处理GET请求
     * request 对象：属性：url发出请求的网址；method:HTTP请求的方法；headers：HTTP所请求的所有HTTP头信息。
+    * 处理异步操作：遇到异步操作时，会先处理后面的请求。
+
+#### koa框架
+
+1. Kao应用： 一个koa应用就是一个对象，包含middleware数组。
+
+2. 中间件：对HTTP请求处理的函数，但必须是一个 Generator函数。属于层层调用， 上游中间件必须等到下游中间件返回结果，才回继续执行。
+    * Generator函数内部使用yield命令，将程序的执行权交给下一个中间件，即：yield next，要等到下一个中间件返回结果，才会继续执行。
+    * 只要有一个中间件缺少yield next语句，后面的中间件都不会执行。
+    * 如果想跳过一个中间件，可以直接在该中间件的第一行语句上写上 `return yield next`；
+    * Koa要求，中间件的唯一参数就是next。
+
+3. 多个中间件的合并
+    * 由于中间件的参数统一为next，因此可以使用`.call(this,next)` 将多个中间件进行合并。
+    ````javascript
+    function *random(next) {
+        if ('/random' == this.path) {
+            this.body = Math.floor(Math.random()*10);
+        } else {
+            yield next;
+        }
+    };
+    function *backwards(next) {
+        if ('/backwards' == this.path) {
+            this.body = 'sdrawkcab';
+        } else {
+            yield next;
+        }
+    }
+    function *pi(next) {
+        if ('/pi' == this.path) {
+            this.body = String(Math.PI);
+        } else {
+            yield next;
+        }
+    }
+    function *all(next) {
+      yield random.call(this, backwards.call(this, pi.call(this, next)));
+    }
+    app.use(all);
+    ````
+
+4. 路由：可以通过this.path属性， 判断用户请求的路径，从而起到路由的作用。复杂路由可以使用koa-router插件。
+
+5. koa-router插件提供一系列动词：他们的参数：参数一：路径模式；参数er: 对应控制器方法(中间件)；
+    * router.get()
+    * router.post();
+    * router.pull();
+    * router.del();
+    *router.patch();
+    注意：路径匹配的时候，不会把查询字符串考虑在内，比如：`/index?param=xyz` 匹配路径：`/index`;
+6. context对象：中间件中的this表示上下文对象context,代表一次HTTP请求和回应。context封装了request和response对象，每次HTTP请求，就会创建一个新的context对象。
+    
+
