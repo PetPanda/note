@@ -41,9 +41,11 @@
     * 注意：作为对象属性名时，不能使用点运算符 `a.mySymbol = 'hello'` 是错误的！必须使用[],在对象内部也是这样。
 * 属性名的遍历：作为属性名，该属性不会出现在`for...in、for...of`的循环中，也不会被`Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()`返回。可以使用`Object.getOwnPropertySymbols`获取指定对象的所有Symbol属性名。
 
-*  Symbol.for()，Symbol.keyFor()
+* Symbol.for()，Symbol.keyFor()
     * Symbol.for()登记Symbol值，全局环境的； 重新使用同一个Symbol值，接受字符串参数 `Symbol.for('foo') === Symbol.for('foo') //true`,无论调用多少次，都会返回同一个Symbol值；而`Symbol('foo')`会返回不同的值
     * Symbol.keyFor 返回一个已登记的Symbol类性值的key `var s1 = Symbol.for('foo'); Symbol.keyFor(s1)//foo` 而`var s2 = Symbol('foo'); Symbol.keyFor(s2)//undefined`
+* Symbol.iterator属性，指向该对象默认的遍历器方法。
+
 #### Set
 
 * 基本用法：类似于数组，值是唯一的，没有重复的值。set本身是一个构造函数，用来生成Set数据结构。接受一个数组作为参数，用来初始化，返回初始化的数组。
@@ -79,7 +81,14 @@ for (let i of s) {
 
 * 概念：类似于对象，是键值对的集合；
 
-#### Generator 
+#### Iterator（遍历器）
+
+1. 说明:遍历器是一种接口规格，人格对象只要部署这个接口，就可以完成遍历操作.
+2. 作用：为各种数据结构，提供统一简便的接口；使得对象属性按照某种次序排列.
+3. 在ES6中只有三种数据结构具备原生的Iterator接口：数组，类似数组的对象， set和Map结构。初次之外都需要自己部署。
+
+
+#### Generator
 
 1. 基本概念：异步变成解决方案；标志：function *() ；内部使用yield关键字；类似于普通函数，添加括号，函数不执行，返回的是指向函数内部状态的**指针对象**,使用next方法继续执行。yield是暂停执行的标记，next 是可以恢复执行。
 2. yield语句：遇到yield语句，暂停后面的操作，并将紧跟在yield后面的表达式的值作为返回对象的Value对象值。不能用在普通函数中， 否则会报错。如果用在表达式中， 必须放在括号中 ` console.log('1111' + (yield))`; 本身没有返回值，或者总是返回undefined
