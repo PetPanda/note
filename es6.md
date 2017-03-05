@@ -115,7 +115,7 @@ b.next(13) // { value:42, done:true }
 
 4. for...of循环可以自动遍历 Generator函数生成的Iterator对象，且不需要调用next方法；一旦next方法的返回对象的done属性为true时，for..of循环就会终止，且不包含该返回的对象。
 
-5. yield* 语句，用来在一个Generator函数中执行另一个Generator函数。
+5. yield* 语句，用来在一个Generator函数中执行另一个Generator函数。表明返回的是遍历器。不是单一的对象。
 
 ````javascript
 function* bar() {
@@ -124,6 +124,10 @@ function* bar() {
   yield 'y';
 }
 ````
+6. 应用：
+    * 异步操作的同步化表达
+    * 控制流管理：多级回调函数的解决；yield是同步执行，不是异步，同时返回Promise对象。
+    * 部署iterator接口：可以在任意对象上面部署iterator接口
 
 #### async函数
 
