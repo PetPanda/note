@@ -1,4 +1,4 @@
-# Mongoose 的使用教程
+# Mongoose 的使用
 
 1. 连接使用数据库：
 
