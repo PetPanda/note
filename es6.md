@@ -1,6 +1,6 @@
 # es6
 
-#### 对象扩展
+### 对象扩展
 
 * Object.is()判断两个对象是否是相等。
 * Object.assign();合并对象；参数一：源对象;参数二：要合并的对象；同名属性后面的属性会覆盖前面的属性；只有一个参数，会返回该参数。若不是对象，转换成对象，再返回。undefined和null不能转换为对象，报错。
@@ -15,9 +15,9 @@
 * Object.setPrototypeOf(object,prototype)设置一个对象的prototype对象;Object.getPrototypeOf(obj);获取一个对象的prototype对象；
 * Object.keys()返回数组，成员参数是对象自身所有可遍历键名；Object.values()数组，所有键值；Object.entries() 数组，所有键值对
 
-#### Reflect 目的是操作对象
+### Reflect 目的是操作对象
 
-#### Symbol
+### Symbol
 
 * 概念：数据类型，表示独一无二的值
 * 生成：Symbol()函数，不实用new 关键字
@@ -46,7 +46,7 @@
     * Symbol.keyFor 返回一个已登记的Symbol类性值的key `var s1 = Symbol.for('foo'); Symbol.keyFor(s1)//foo` 而`var s2 = Symbol('foo'); Symbol.keyFor(s2)//undefined`
 * Symbol.iterator属性，指向该对象默认的遍历器方法。
 
-#### Set
+### Set
 
 * 基本用法：类似于数组，值是唯一的，没有重复的值。set本身是一个构造函数，用来生成Set数据结构。接受一个数组作为参数，用来初始化，返回初始化的数组。
 
@@ -77,11 +77,11 @@ for (let i of s) {
             * forEach()使用回调函数遍历每个成员
         * 扩展运算浮的使用：let a = [...new Set([2,2,2,4,5])];
 
-#### Map 结构
+### Map 结构
 
 * 概念：类似于对象，是键值对的集合；
 
-#### Iterator（遍历器）
+### Iterator（遍历器）
 
 1. 说明:遍历器是一种接口规格，人格对象只要部署这个接口，就可以完成遍历操作.
 2. 作用：为各种数据结构，提供统一简便的接口；使得对象属性按照某种次序排列.
@@ -89,7 +89,7 @@ for (let i of s) {
 4. for..of:只要对象部署@@Iterator接口，就可以使用for...of遍历他的值。js原有的for..in循环，只能获取对象的键名，不能获取键值，for...of可以获取键值。
     * for...of循环可以使用的范围：数组，类似数组的对象、Set和Map结构、Generator函数对象，以及字符串！！！
 
-#### Generator
+### Generator
 
 1. 基本概念：异步变成解决方案；标志：function *() ；内部使用yield关键字；类似于普通函数，添加括号，函数不执行，返回的是指向函数内部状态的**指针对象**,使用next方法继续执行。yield是暂停执行的标记，next 是可以恢复执行。
 2. yield语句：遇到yield语句，暂停后面的操作，并将紧跟在yield后面的表达式的值作为返回对象的Value对象值。不能用在普通函数中， 否则会报错。如果用在表达式中， 必须放在括号中 ` console.log('1111' + (yield))`; 本身没有返回值，或者总是返回undefined
@@ -124,12 +124,13 @@ function* bar() {
   yield 'y';
 }
 ````
+
 6. 应用：
     * 异步操作的同步化表达
     * 控制流管理：多级回调函数的解决；yield是同步执行，不是异步，同时返回Promise对象。
     * 部署iterator接口：可以在任意对象上面部署iterator接口
 
-#### async函数
+### async函数
 
 1. 概念：async函数就是将 Generator函数的星号（*）替换成async，将yield替换成await;可以按照普通函数执行的模式进行执行；返回值是Promise对象。
 
@@ -151,7 +152,7 @@ function* bar() {
 * 多个await后面的异步操作，如果不存在继发关系，最好是让他们同时触发。
 * await只能用在async函数中，否则会报错。
 
-#### Promise
+### Promise
 
 1. 异步操作同步化
 
@@ -175,7 +176,8 @@ p.the((s) => {
     console.log(s);
 });
 ````
-5. async函数
+
+5. async函数：用来取代回调函数的一种方法
 
 
 ````javascript
@@ -203,7 +205,7 @@ doSomething().then(doSomethingElse).then(finalHandler);
 
 
 
-#### Attention
+### Attention
 
 1. 合并对象：Object.assign(target,source); 为对象添加或者修改属性：Object.defineProperty(target,key,value);
 
