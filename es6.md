@@ -152,6 +152,32 @@ function* bar() {
 * await只能用在async函数中，否则会报错。
 
 #### Promise
+
+1. 异步操作同步化
+
+2. Promise构造函数接收一个函数作为参数，该函数的两个参数分别是resolve方法和rejected方法；
+
+3. Promise.all和Promise.race()都是将多个Promise实例包装成新的Promise实例。
+
+4. 将现有的对象（普通对象）转换成Promise对象，可以使用Promise.resolve()或Promise.rejected()方法
+
+````javascript
+//Promise.resolve()方法返回一个新的Promise对象，他的状态时fulfilled.
+var p = new Promise.resolve('hello');
+//p的状态时fulfilled，所以回调函数会立即执行。
+p.then((s) => {
+    console.log(s)
+});
+
+//Promise.rejected(reason)方法会返回一个新的Promise实例，该实例状态为rejected,Promise.rejected()函数参数的reason，会被传递给实例的回调函数。
+var p = new Promise.rejected('出错啦！');
+p.the((s) => {
+    console.log(s);
+});
+````
+5. async函数
+
+
 ````javascript
 //第一种写法
 doSomething().then(function(){
