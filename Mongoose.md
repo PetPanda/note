@@ -1,6 +1,7 @@
 # Mongoose 的使用教程
 
 1. 连接使用数据库：
+
 ````javascript
 var mongoose = require('mongoose');
 //连接字符串格式为mongodb://主机/数据库名

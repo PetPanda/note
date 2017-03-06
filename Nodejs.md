@@ -1,24 +1,27 @@
 # Nodejs教程————阮一峰
 
-#### Assert模块
+### Assert模块
 
 1. 简述：用于断言，如果表达式不符合预期，就会抛出一个错误。
 2. 使用：接受两个参数，当第一个参数为true时，不会有任何提示，返回undefined;当第一个参数为false时，会抛出一个错误，错误的提示信息就是第二个参数设定的字符。
+
 ````javascript
 var assert = require('assert');
 assert(value,message);
 ````
+
 3. 方法：
     * assert.equal();第一个是实际值，第二个是预期值，第三个是错误提示信息。
 
-####  Buffer对象
+###  Buffer对象
 
 1. 概述：处理二进制接口，是全局对象，可以直接使用，不用进行require。
+
 ````javascript
 var bytes = new Buffer(34);
 ````
 
-#### Child Process模块
+### Child Process模块
 
 1. 创建子进程。子进程运行结果存在系统缓存中，等子进程运行结束以后，主进程再使用回调函数读取子进程的运行结果。
 2. 方法：
@@ -32,7 +35,7 @@ var bytes = new Buffer(34);
     });
     ````
 
-#### express框架
+### express框架
 
 1. 运行原理：
     * 底层： http模块 >>>>>> express框架是在http模块之上，加了一个中间件。
@@ -83,7 +86,7 @@ var bytes = new Buffer(34);
         console.log('Server is running on port 8084');
     ````
 
-#### fs模块
+### fs模块
 
 1. 简介：提供本地文件的读写能力，可以对本地文件进行操作。
 
@@ -98,14 +101,14 @@ var bytes = new Buffer(34);
     * readdir() 读取目录，返回一个所包含的文件和子目录的数组。
     * watchfile()监听文件，若文件发生变化，会自动触发回调函数。
 
-##### http模块
+#### http模块
 
 1. 基本用法：
     * 处理GET请求
     * request 对象：属性：url发出请求的网址；method:HTTP请求的方法；headers：HTTP所请求的所有HTTP头信息。
     * 处理异步操作：遇到异步操作时，会先处理后面的请求。
 
-#### koa框架
+### koa框架
 
 1. Kao应用： 一个koa应用就是一个对象，包含middleware数组。
 
@@ -155,5 +158,3 @@ var bytes = new Buffer(34);
     *router.patch();
     注意：路径匹配的时候，不会把查询字符串考虑在内，比如：`/index?param=xyz` 匹配路径：`/index`;
 6. context对象：中间件中的this表示上下文对象context,代表一次HTTP请求和回应。context封装了request和response对象，每次HTTP请求，就会创建一个新的context对象。
-    
-
