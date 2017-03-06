@@ -4,7 +4,7 @@
 
 1. 使用mapMutations辅助函数将组件中的methods映射为store.commit调用。就是可以在组件中直接使用this.increment()方法执行。
 
-<img src="./images/mutation.jpg" height="300" width="400">
+  <img src="./images/mutation.jpg"  />
 
 2. mapState辅助函数：使用mapState函数生成计算属性；当映射的计算属性的名称与state的子节点名称相同时，可以给mapState传一个字符串数组。组件中使用this.count进行取值。
 
