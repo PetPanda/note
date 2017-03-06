@@ -169,7 +169,6 @@ var p = new Promise.resolve('hello');
 p.then((s) => {
     console.log(s)
 });
-
 //Promise.rejected(reason)方法会返回一个新的Promise实例，该实例状态为rejected,Promise.rejected()函数参数的reason，会被传递给实例的回调函数。
 var p = new Promise.rejected('出错啦！');
 p.the((s) => {
@@ -178,7 +177,6 @@ p.the((s) => {
 ````
 
 5. async函数：用来取代回调函数的一种方法
-
 
 ````javascript
 //第一种写法
@@ -203,6 +201,38 @@ doSomething().then(doSomethingElse).then(finalHandler);
 //写法四和写法一只有一个差别，那就是doSometingElse会收到doSomething()返回的结果。
 ````
 
+### Class
+
+````javascript
+function Point {
+
+    constructor(x,y){
+        this.x = x;
+        this.y = y;
+    }
+
+    toString() {
+        return this.x + "," + this.y;
+    }
+};
+
+var point = new Point(2,4);
+point.toString(); //(2,4);
+
+//继承
+class colorPoint extends Point {
+
+    constructor(x,y,color) {
+        super(x,y); //代指父类的super方法。
+        this.color = color;
+    }
+
+    toString() {
+        return this.color+ ' ' + super(); //super代指父类的toString方法。
+    }
+
+}
+````
 
 
 ### Attention
