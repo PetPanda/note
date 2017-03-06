@@ -1,4 +1,4 @@
-# Something 
+# notic
 
 1. package.json文件
     * `dependencies`是项目运行需要依赖的模块；
