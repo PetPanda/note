@@ -27,7 +27,7 @@ computed: {
 import { mapActions } from 'vuex'
 //在组件中可以使用，this.add()方法
 export default {
-  // ...
+  // 两种不同方式的映射
   methods: {
     ...mapActions([
       'increment' // 映射 this.increment() 为 this.$store.dispatch('increment')
@@ -42,7 +42,7 @@ export default {
 
 ### Vue-router
 
-1. 使用this.$router.query.geohash进行连接参数的查询
+* 使用this.$router.query.geohash进行连接参数的查询
 
 ### Vue.js
 
@@ -51,7 +51,7 @@ export default {
 ````javascript
 new Vue({
     mixins: [mixin]
-    });
+});
 ````
 
   * 选项合并：组件和混合对象含有同名选项时，这些选项将会混合；混合对象的钩子将在组件自身钩子之前调用。值为对象的选项，将被混合为一个对象，两个对象名冲突时，取组件对象的键值对。
@@ -65,12 +65,12 @@ var mixin = {
 
 }
 new Vue({
-
   mixins: [mixin],
 
   created: function () {
-    console.log('组件钩子被调用')
+    console.log('组件钩子被调用');
   }
+
 });
 //合并
 var mixin = {
