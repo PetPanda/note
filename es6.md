@@ -152,6 +152,12 @@ function* bar() {
 * 多个await后面的异步操作，如果不存在继发关系，最好是让他们同时触发。
 * await只能用在async函数中，否则会报错。
 
+5. async对Generator函数的改进
+    * 内置执行器：async自带执行器，与普通函数的执行一样，不需要调用next方法，执行就可以输出最后的结果。
+    * 更好的语义：async和await，比星号和yield语义更清楚，async表示函数里有异步操作，await表示紧跟在后面的函数要等待结果。
+    * 更广的适用性：co模块规定，yield后面只能是Thunk函数或者是Promise对象，而async函数的await命令后面，可以是Promise对象和原始类型的值。
+    * 返回值是Promise对象，**可以使用then进行操作**
+
 ### Promise
 
 1. 异步操作同步化
