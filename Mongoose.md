@@ -5,7 +5,7 @@
 ````javascript
 var mongoose = require('mongoose');
 //连接字符串格式为mongodb://主机/数据库名
-mongoose.connect('mongodb://localhost/mydatabase');
+mongoose.connect('mongodb://127.0.0.1:27017/test');
 //数据库连接后，就可以 对open和error事件进行监听了。
 var db = mongoose.connection;
 db.on('error',function clallback(){
@@ -19,8 +19,23 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({//定义数据结构，
     name: String,
     age: Number,
-    DOB: Date,
     isAlive: Boolean
 });
-var user = mongoose.model('User',userSchema);
+//创建model
+var Testuser = mongoose.model('User',userSchema);
+//实例化该model
+var testSchma = new Testuser({
+    name: 'wangshouming',
+    age: 12,
+    isAlive: true
+});
+
+//保存实现
+testSchma.save(function(error,doc){
+    if(error){
+        console.log(error)
+    }else{
+        console.log(doc`)
+    }
+})
 ````
