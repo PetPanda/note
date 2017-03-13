@@ -207,7 +207,7 @@ doSomething().then(doSomethingElse).then(finalHandler);
 //写法四和写法一只有一个差别，那就是doSometingElse会收到doSomething()返回的结果。
 ````
 
-### Class
+## Class
 
 ````javascript
 function Point {
