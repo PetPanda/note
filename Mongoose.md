@@ -272,3 +272,53 @@ TestSchema.method.speak = function(){
 }
 TestModelEntity.speak(); // my name is ..
 ````
+
+
+## 处理mongodb中外键引用问题
+
+在Schema字段中添加ref属性来指向另一个Schema
+注意：`ObjectId, Number, String, and Buffer are valid for use as refs.`
+
+````javascript
+const userSchema = new Schema({
+    _id: Number,
+    name:String,
+    pwd: String
+});
+
+const lists = new Schema({
+    _creator :{type: Number,ref: "User"}, //使用ref来进行外键引入
+    content: String,
+    date: Date,
+    subcont: String,
+    type: Number //指定清单类型
+});
+
+const Models = {
+    User: mongoose.model('User',userSchema),
+    Lists: mongoose.model('Lists',lists),
+    initialized: false
+};
+const user1 = new Models["User"]({
+    _id:2,
+    name: 'wsm',
+    pwd: '110'
+});
+user1.save();
+
+const lists1 = new Models["Lists"]({
+    _creator: user1._id,
+    content: '1111',
+    subcont: '222',
+    date: '2014/02/01',
+    type: 2
+})
+
+lists1.save();
+//在lists1中保存着user1的id，使用populate方法就可以在lists1中修改user1的内容
+lists1.findOne({content:"1111"}).populate(creator).exec((error,user1) => {
+    if(error) throw error
+    console.log(user1.creator.content)
+})
+
+````
