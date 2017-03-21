@@ -39,6 +39,11 @@ export default {
 }
 ````
 
+4. Action 
+
+* 提交`mutations`，不直接提交状态。
+
+* Action可以包含任意_异步_操作。  
 
 ### Vue-router
 
@@ -103,4 +108,22 @@ var vm = new Vue({
   }
 });
 //取组件自身的键值对
+````
+
+3. ref 子组件索引
+
+使用ref为子组件指定一个索引ID
+
+````HTML
+<div id="parent">
+  <user-profile ref="profile"></user-profile>
+</div>
+````
+
+````javascript
+var parent = new Vue({
+  el: "#parent",
+});
+//访问子组件
+var child = parent.$refs.profile
 ````
