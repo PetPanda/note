@@ -240,6 +240,8 @@ class colorPoint extends Point {
 }
 ````
 
+contructor是类的默认方法，如果没有声明，会默认添加一个空的constructor方法，
+
 
 ## Attention
 

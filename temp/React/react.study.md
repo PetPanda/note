@@ -38,6 +38,31 @@ ReactDOM.render({
 
 `getDefaultProps`方法用来设置组件的默认属性
 
+````javascript
+React.createClass({
+    getDefaultProps() {
+        return {
+            title: 'this is title'
+        }
+    }
+})
+````
+
+组件类的`PropTypes`属性，用来验证组件实例的属性是否符合要求
+
+````javascript
+const MyTitle = React.createClass({
+    PropTypes: {
+        title: this.PropTypes.string.isRequired
+    },
+    render(){
+        return (
+            <h1>{this.props.title}</h1>
+        )
+    }
+})
+````
+
 ## 获取真实的DOM节点
 
 使用`ref`属性获取真实的DOM节点
