@@ -202,7 +202,54 @@ render(
 Store enhancer `store`增强器
 
 
+注意：
+
+在异步操作中使用对象展开浮（... ES7中提案）代替`Object.assign()`
+
+````javascript
+switch(action.type){
+    case Todos.ADD_EVENT:
+        return {...state,visiblity: none}
+        break;
+}
+````
+
+
+
 ## 关于Redux的异步操作
+
+
+* 用于生成action creator的函数
+
+````javascript
+function makeActionMaker(type,...argNames){
+    return function(...args){
+        let action =  { type };
+        argNames.forEach((arg,index) => {
+            action[argNames[index]] = args[index]
+        })
+        return action;
+    }
+}
+const ADD_TODO = 'ADD_TODO';
+export const addTodo = makeActionMaker(ADD_TODO,'id','text')
+````
+
+* 编写自己的异步action creator函数
+
+````javascript
+function loadPosts(userId){
+    return {
+        //要在发送之前和之后的action types
+        types: ['LOADE_REQUEST','LOADE_SUCCESS','LOADE_FAILER'],
+        //检查缓存
+        shouCallAPI: (state) => !state.users[userId],
+        callAPI: () => fetch('http://myapi/users/${userId}/posts'),
+        //在action开始和结束时注入的id
+        playload: {userId}
+    }
+}
+````
 
 
 

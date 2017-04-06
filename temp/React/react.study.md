@@ -195,19 +195,27 @@ var RepoList = React.createClass({
 
 ### 装载组件触发
 
-1. `componentWillMount()`：在组件render之前立即执行，永远只执行一次；装载之前调用一次,`render`之前调用,调用`setState`改变状态。
-2. `componentDidMount()`: 在组件加载完毕之后立即执行；装载之后调用，`render`之后调用，这里开始通过`ReactDOM.findDOMNode(this)` 获取到组件的 DOM 节点。
+* 组件加载`componentWillMount`：会在组件render之前执行，并且永远只执行一次，如果在这里定义setState方法，页面只会在加载前更新一次
 
-###  更新组件触发
+* 组件加载`componentDidMount` （常用）：会在组件加载完成之后立即执行
 
-1. `componentWillReceiveProps(nextProps)` 在组件接收到一个新的prop时被执行，在初始化render时不会执行；在这个方法内执行`setState`不会增加一次render *nextProps新的prop*
-2. `shouldComponentUpdate(nextProps,nextState)`可以在确认不需要组件更新时使用；返回一个布尔值，在组件接受到新的prop或state时被执行；。
-3. `componentWillUpdate(nextProps,nextState)` 一般用在组件发生更新之前；在组件接受到新的prop或者是state但是没有被render时执行，初始化不会执行。
-4. `componentDidUpdate(prevProps,prevState)` 在组件完成更新之后立即执行。初始化时不会执行.
+    - 这是组件已经生成对应的DOM结构，可以通过`this.getDOMNode()`来获取；
 
-### 卸载组件触发
+    - 如果使用其他框架，可以在这个组件中执行`setTimeout`，`setInterval`以及Ajax等异步操作（防止异步阻塞UI）
 
-`componentWillUnmount()` 在组件从DOM unmounent时执行
+    - 绑定DOM事件
+
+
+* 组件更新`componentWillReceiveProps`：比较当前属性和新属性，以便决定是否通过`this.setState()`进行状态转换；在组件接受到一个新的prop时被执行，在初始化render时不会被调用，在这个组件中调用this.setState不会触发render
+
+* 组件更新`shouldComponentUpdate`:返回一个布尔值，在组件接受到新的props或者state时被执行，可以在你确认不需要组件时使用。
+
+* 组件更新`componentWillUpdate`: 在组件接收到新的prop或者state时但是还没有render时被调用，在初始化时不会被调用，一般发生在组件更新之前。
+
+* 组件更新`componentDidUpdate`：组件完成更新之后立即执行，在初始化时不会被执行，一般在组件完成更新之后使用。
+
+* 卸载组件`componentWillUnmount`：在组件从DOM 卸载之后执行。主要用来执行一些必要的清理任务。例如清除setTimeout等函数，
+
 
 ## Flux
 
