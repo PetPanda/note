@@ -27,7 +27,7 @@
     * 作为属性名：唯一，可做标示符
     ````javascript
     //第一种写法
-    let s  = Symbol();
+    let s  =     Symbol();
     let a = {};
     a[s] = 'hello';
     //第二种写法
