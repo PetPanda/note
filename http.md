@@ -3,7 +3,6 @@
 ## 
 
 
-
 ## webSocket
 
 ### 客户端：
@@ -102,16 +101,15 @@ app.get('/',function(req,res){
 })
 
 // 将websocket.io插入客户端网页
+````
+
+````javascript
 <script src="/socket.io/socket.io.js"></script>
-
 //在客户端脚本中建立websocket连接
-
 var websocket = io.connect('http://localhost:90')
-
 websocket.on('news',function(data){
     console.log(data)
 });
-
 // 最后用emitc向服务器发送信号，触发服务器端的anotherNews事件
 websocket.emit('anotherNews')
 // 请注意，emit可以替代Ajax请求，而on方法可以指定回调函数，也等同于Ajax的回调函数
