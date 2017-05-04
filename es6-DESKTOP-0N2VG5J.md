@@ -243,29 +243,6 @@ class colorPoint extends Point {
 contructor是类的默认方法，如果没有声明，会默认添加一个空的constructor方法，
 
 
-class的静态方法，在方法前加上关键字`static`，标示该方法不会被实例继承。静态方法可以被子类继承。静态方法直接通过类来调用
-
-````javascript
-class Foor {
-    static sayName(){
-        console.log('this is a static function!')
-    }
-}
-
-Foo.sayName(); // this is a static function
-
-var foo = new Foo();
-
-foo.sayName(); // TypeError: undefined id not an function
-
-class Bar extends Foo {
-
-}
-
-Bar.sayName(); // this is a static function
-````
-
-
 ## Attention
 
 1. 合并对象：Object.assign(target,source); 为对象添加或者修改属性：Object.defineProperty(target,key,value);
