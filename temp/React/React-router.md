@@ -143,7 +143,7 @@ IndexRoute 显式指定Home是根路由的子组件，指定默认情况下加�
 
 使用`activeClassName`指定class
 
-## IndexLink 
+## IndexLink
 
 连接到根路径`/` 不要使用`Link`组件 要使用`IndexLink`组件 因为`activeStyle`以及`activeClassName`会失效
 
